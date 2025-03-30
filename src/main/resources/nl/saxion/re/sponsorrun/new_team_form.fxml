@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns:fxc="http://javafx.com/javafx/17.0.12"
+           fx:controller="nl.saxion.re.sponsorrun.controllers.NewTeamController"
+           style="-fx-background-color: #f4f4f4;">
+    <children>
+        <VBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="New Team Registration"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+            <GridPane fx:id="formGrid" hgap="10" vgap="10" alignment="CENTER"
+                      style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #dddddd; -fx-border-radius: 6; -fx-background-radius: 6; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);">
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="nameField" promptText="Name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Province:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="provinceField" promptText="Province" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="City:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="cityField" promptText="City" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Number of Members:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="membersField" promptText="Number of Members" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Responsible Teacher:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="teacherField" promptText="Responsible Teacher" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Contact Info:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="contactField" promptText="Contact Information" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="6" GridPane.columnSpan="2">
+                    <Button text="Go back" onAction="#handleBack"/>
+                    <Button fx:id="saveButton" text="Save" onAction="#handleSave"/>
+                </HBox>
+            </GridPane>
+        </VBox>
+    </children>
+</StackPane>

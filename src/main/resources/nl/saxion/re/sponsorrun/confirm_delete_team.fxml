@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           xmlns="http://javafx.com/javafx/17.0.12"
+           fx:controller="nl.saxion.re.sponsorrun.controllers.ConfirmDeleteTeamController"
+           style="-fx-background-color: #f4f4f4;">
+    <children>
+        <VBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+
+            <Label text="⚠️ Confirm Deletion"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #c0392b;" />
+
+            <Label text="Are you sure that you really want to DELETE this team?"
+                   style="-fx-font-size: 16px; -fx-text-fill: #333333;" wrapText="true"
+                   textAlignment="CENTER"/>
+
+            <!-- Card com as informações do time -->
+            <VBox fx:id="teamCard" spacing="5"
+                  style="-fx-background-color: white; -fx-border-color: #dddddd; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                <Label fx:id="teamInfoLabel"
+                       style="-fx-font-size: 14px; -fx-text-fill: #555;" wrapText="true"/>
+            </VBox>
+
+            <!-- Botões -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button onAction="#handleCancel"
+                        text="Cancel"
+                        style="-fx-background-color: #bdc3c7; -fx-text-fill: white;" />
+
+                <Button onAction="#handleDelete"
+                        text="Delete"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
+            </HBox>
+        </VBox>
+    </children>
+</StackPane>
+

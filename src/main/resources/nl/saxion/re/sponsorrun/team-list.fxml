@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="nl.saxion.re.sponsorrun.controllers.TeamListController">
+
+    <children>
+        <VBox spacing="20" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <children>
+
+                <VBox spacing="20" alignment="TOP_CENTER">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+
+                    <children>
+                        <HBox spacing="10" alignment="CENTER">
+                            <children>
+                                <Label text="Teams" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                                <Button text="Add Team" onAction="#handleAddTeam"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Substitua este VBox abaixo -->
+                        <GridPane fx:id="teamGrid" hgap="10" vgap="10" alignment="TOP_CENTER"
+                                  style="-fx-background-color: #f4f4f4; -fx-padding: 15; -fx-border-color: #ccc; -fx-border-radius: 8; -fx-background-radius: 8;"
+                                  maxWidth="600"/>
+                    </children>
+                </VBox>
+
+            </children>
+        </VBox>
+    </children>
+</StackPane>
