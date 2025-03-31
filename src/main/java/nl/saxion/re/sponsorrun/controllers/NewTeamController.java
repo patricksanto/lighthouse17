@@ -26,16 +26,46 @@ public class NewTeamController {
 
     @FXML
     private void handleSave() {
-        try {
-            Team team = new Team(
-                    nameField.getText(),
-                    provinceField.getText(),
-                    cityField.getText(),
-                    Integer.parseInt(membersField.getText()),
-                    teacherField.getText(),
-                    contactField.getText()
-            );
+        String name = nameField.getText().trim();
+        String province = provinceField.getText().trim();
+        String city = cityField.getText().trim();
+        String membersText = membersField.getText().trim();
+        String teacher = teacherField.getText().trim();
+        String contact = contactField.getText().trim();
 
+        // Required fields validation
+        if (name.isEmpty() || province.isEmpty() || city.isEmpty() ||
+                membersText.isEmpty() || teacher.isEmpty() || contact.isEmpty()) {
+            WindowHelper.showAlert("Please fill in all fields.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Check if the team name already exists (only for new entries or changed names)
+        boolean nameExists = Data.getTeams().stream()
+                .anyMatch(t -> t.getName().equalsIgnoreCase(name) && (!isEditMode || !t.equals(teamToEdit)));
+        if (nameExists) {
+            WindowHelper.showAlert("A team with this name already exists.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Validate number of members
+        int members;
+        try {
+            members = Integer.parseInt(membersText);
+            if (members <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            WindowHelper.showAlert("Invalid number of members. It must be a number greater than zero.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Validate Dutch phone number
+        if (!contact.matches("^(\\+31|0)[1-9][0-9]{8}$")) {
+            WindowHelper.showAlert("Invalid contact number. It must be a valid Dutch phone number (e.g., +31612345678 or 0612345678).", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+            Team team = new Team(name, province, city, members, teacher, contact);
             if (isEditMode) {
                 Data.updateTeam(teamToEdit, team);
             } else {
@@ -43,11 +73,11 @@ public class NewTeamController {
             }
             Stage stage = (Stage) nameField.getScene().getWindow();
             WindowHelper.openMainLayoutWithView("team-list.fxml", stage);
-
         } catch (Exception e) {
-            WindowHelper.showAlert("Erro ao salvar o time: " + e.getMessage(), Alert.AlertType.ERROR);
+            WindowHelper.showAlert("Error saving the team: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
 
     public void setEditMode(Team team) {
         this.isEditMode = true;
